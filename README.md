@@ -3,28 +3,23 @@
 
 
 - 相关链接：
-
   1. https://github.com/chjj/marked
   2. https://github.com/Browsersync/browser-sync 
 
 
 - 实现思路：
-  1. 利用`fs`模块的文件监视功能监视指定MD文件
-  2. 当文件发生变化后，借助`marked`包提供的`markdown` to `html`功能将改变后的MD文件转换为HTML
-  3. 再将得到的HTML替换到模版中
-  4. 最后利用BrowserSync模块实现浏览器自动刷新
+1. 利用`fs`模块的文件监视功能监视指定MD文件
+2. 当文件发生变化后，借助`marked`包提供的`markdown` to `html`功能将改变后的MD文件转换为HTML
+3. 再将得到的HTML替换到模版中
+4. 最后利用BrowserSync模块实现浏览器自动刷新
     browsersync需要用到Python
   
-```javascript
+  
+```
 const fs = require('fs');
 const path = require('path');
 var marked = require('marked');
 var bs = require('browser-sync').create();
-
-
-
-
-
 
 var target = path.join(__dirname, process.argv[2] || './README.md');
 var filename = path.basename(target, path.extname(target)) + '.html';
